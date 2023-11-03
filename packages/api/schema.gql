@@ -1,0 +1,21 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type token {
+  token: String!
+}
+
+type Query {
+  test: token!
+}
+
+type Mutation {
+  login(userAuthInput: UserAuthInput!): token!
+  signup(userAuthInput: UserAuthInput!): token!
+}
+
+input UserAuthInput {
+  email: String!
+  password: String!
+}
