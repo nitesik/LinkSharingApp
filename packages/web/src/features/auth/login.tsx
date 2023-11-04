@@ -1,8 +1,36 @@
 import { icons } from "@/configs/icons";
+import { useLoginMutation } from "@/generated/graphql";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function LoginComponent() {
+  const [loginMutation, { data, loading, error: loginError }] =
+    useLoginMutation();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const router = useRouter();
+
+  function submitHandler(event: React.FormEvent) {
+    event.preventDefault();
+
+    try {
+      loginMutation({
+        variables: {
+          userAuthInput: {
+            email,
+            password,
+          },
+        },
+      }).then(() => router.push("/"));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className="h-screen bg-[#FAFAFA] text-[#737373] grid place-content-center">
       <div className="flex flex-col items-center gap-[51px] text-base">
@@ -10,7 +38,10 @@ export default function LoginComponent() {
           <Image src={icons.logo} alt="logo" width={40} height={40} />
           <Image src={icons.devlinks} alt="devlinks" width={126} />
         </div>
-        <div className="grid gap-10 p-10 bg-white rounded-lg w-[476px]">
+        <form
+          onSubmit={submitHandler}
+          className="grid gap-10 p-10 bg-white rounded-lg w-[476px]"
+        >
           <div>
             <h1 className="text-[32px] leading-[48px] text-black font-bold">
               Login
@@ -35,6 +66,8 @@ export default function LoginComponent() {
                   className="outline-none"
                   type="text"
                   placeholder="e.g. alex@email.com"
+                  required
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -47,7 +80,9 @@ export default function LoginComponent() {
                 <input
                   className="outline-none"
                   type="password"
-                  placeholder="At least 8 characters"
+                  placeholder="Enter your password"
+                  required
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
@@ -62,7 +97,7 @@ export default function LoginComponent() {
               </Link>
             </p>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

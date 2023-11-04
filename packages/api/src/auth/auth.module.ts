@@ -5,10 +5,11 @@ import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   providers: [AuthResolver, AuthService],
+  exports: [AuthService],
   imports: [
     JwtModule.register({
       global: true,
-      privateKey: process.env.SECRET_KEY,
+      secret: process.env.SECRET_KEY,
       signOptions: { expiresIn: '30m' },
     }),
   ],

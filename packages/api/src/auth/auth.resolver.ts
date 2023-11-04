@@ -6,21 +6,23 @@ import { AuthService } from './auth.service';
 import { UserAuthInput } from './dto/user-auth.input';
 import { Response } from 'express';
 import { AuthGuard } from './auth.guard';
+import { User } from './model/User.model';
+import { CurrentUser } from './current-user.decorator';
 
 @Resolver()
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
   @UseGuards(AuthGuard)
-  @Query(() => Token)
-  async test() {
-    return { token: '3243242' };
+  @Query(() => User)
+  async Me(@CurrentUser() user): Promise<User> {
+    return user.user;
   }
 
   @Mutation(() => Token)
   async login(
     @Args('userAuthInput') userAuthInput: UserAuthInput,
-    @Context() { res, req }: { res: Response; req: Request },
+    @Context() { res }: { res: Response },
   ): Promise<Token> {
     const token = await this.authService.login(
       userAuthInput.email,
@@ -28,12 +30,10 @@ export class AuthResolver {
     );
 
     if (token)
-      res.cookie('auth', `Bearer ${token}`, {
-        expires: new Date(Date.now() + 90000),
+      res.cookie('auth', token.token, {
+        maxAge: 90000,
         httpOnly: false,
       });
-
-    console.log(req);
 
     return token;
   }
@@ -43,14 +43,14 @@ export class AuthResolver {
     @Args('userAuthInput') userAuthInput: UserAuthInput,
     @Context() { res }: { res: Response },
   ): Promise<Token> {
-    const token = this.authService.signup(
+    const token = await this.authService.signup(
       userAuthInput.email,
       userAuthInput.password,
     );
 
     if (token)
-      res.cookie('auth', `Bearer ${token}`, {
-        expires: new Date(Date.now() + 90000),
+      res.cookie('auth', token.token, {
+        maxAge: 90000,
         httpOnly: false,
       });
     return token;
