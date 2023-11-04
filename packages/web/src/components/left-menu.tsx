@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function LeftMenu() {
   return (
-    <main className="bg-white h-full pt-[100px] flex justify-center rounded-xl ">
+    <main className="bg-white h-full flex justify-center pt-[100px] p-6 rounded-xl ">
       <div className="w-[307px] h-[631px] bg-no-repeat p-3 bg-outer-rect">
         <div className="h-[611px] w-[285px] bg-inner-rect pt-[53.5px] ">
           <div className="custom_scroll flex flex-col items-center  h-[90%] px-6 overflow-y-auto ">
