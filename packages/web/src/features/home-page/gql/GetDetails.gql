@@ -1,0 +1,10 @@
+query GetDetails {
+  getDetails {
+    firstName
+    lastName
+    links {
+      platform
+      link
+    }
+  }
+}

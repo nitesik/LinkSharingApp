@@ -1,8 +1,34 @@
 import { icons } from "@/configs/icons";
+import { useSignUpMutation } from "@/generated/graphql";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function SignUpComponent() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  const [signUpMutation, { data, loading, error }] = useSignUpMutation();
+
+  const router = useRouter();
+
+  function formHandler(event: React.FormEvent) {
+    event.preventDefault();
+
+    signUpMutation({
+      variables: {
+        userAuthInput: {
+          email,
+          password,
+        },
+      },
+    })
+      .then(() => router.push("/"))
+      .catch((e) => console.error(e));
+  }
+
   return (
     <div className="h-screen bg-[#FAFAFA] text-[#737373] grid place-content-center">
       <div className="flex flex-col items-center gap-[51px] text-base">
@@ -10,7 +36,10 @@ export default function SignUpComponent() {
           <Image src={icons.logo} alt="logo" width={40} height={40} />
           <Image src={icons.devlinks} alt="devlinks" width={126} />
         </div>
-        <div className="grid gap-10 p-10 bg-white rounded-lg w-[476px]">
+        <form
+          onSubmit={formHandler}
+          className="grid gap-10 p-10 bg-white rounded-lg w-[476px]"
+        >
           <div>
             <h1 className="text-[32px] leading-[48px] text-black font-bold">
               Create account
@@ -32,9 +61,11 @@ export default function SignUpComponent() {
                   height={16}
                 />
                 <input
+                  required
                   className="outline-none"
                   type="text"
                   placeholder="e.g. alex@email.com"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -45,9 +76,11 @@ export default function SignUpComponent() {
               <div className="flex gap-3 items-center border px-4 py-3 rounded-lg mt-1">
                 <Image src={icons.lock} alt="lock" width={16} height={16} />
                 <input
+                  required
                   className="outline-none"
                   type="password"
                   placeholder="At least 8 characters"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
@@ -58,14 +91,20 @@ export default function SignUpComponent() {
               <div className="flex gap-3 items-center border px-4 py-3 rounded-lg mt-1">
                 <Image src={icons.lock} alt="lock" width={16} height={16} />
                 <input
+                  required
                   className="outline-none"
                   type="password"
                   placeholder="At least 8 characters"
+                  onChange={(e) => setPasswordConfirm(e.target.value)}
                 />
               </div>
             </div>
             <p>Password must contain at least 8 characters</p>
-            <button className="bg-[#633CFF] py-3 rounded-lg text-white font-bold">
+            <button
+              disabled={password !== passwordConfirm}
+              type="submit"
+              className="bg-[#633CFF] py-3 rounded-lg text-white font-bold"
+            >
               Create new account
             </button>
             <p className="text-center">
@@ -75,7 +114,7 @@ export default function SignUpComponent() {
               </Link>
             </p>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

@@ -12,3 +12,21 @@ body {
 .custom_scroll::-webkit-scrollbar {
   display: none;
 }
+
+.custom_dropdown_parent {
+  transition: all 100ms ease-in-out;
+  transform-origin: top;
+}
+
+.custom_dropdown {
+  transform: scaleY(0);
+}
+
+.custom_dropdown_parent:focus {
+  border-color: #633cff;
+  box-shadow: 0px 0px 32px 0px rgba(99, 60, 255, 0.25);
+}
+
+.custom_dropdown_parent:focus .custom_dropdown {
+  transform: scaleY(1);
+}

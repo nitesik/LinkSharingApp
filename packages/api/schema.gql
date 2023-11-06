@@ -12,16 +12,46 @@ type User {
   email: String!
 }
 
+"""message"""
+type SuccessMessage {
+  success: String!
+}
+
+type LinkOutputDTO {
+  platform: String!
+  link: String!
+}
+
+"""User"""
+type UserOutputDTO {
+  firstName: String!
+  lastName: String!
+  links: [LinkOutputDTO!]!
+}
+
 type Query {
   Me: User!
+  getDetails: UserOutputDTO!
 }
 
 type Mutation {
   login(userAuthInput: UserAuthInput!): token!
   signup(userAuthInput: UserAuthInput!): token!
+  addDetails(userDetailsInput: UserDetailsInput!): SuccessMessage!
 }
 
 input UserAuthInput {
   email: String!
   password: String!
+}
+
+input UserDetailsInput {
+  firstName: String!
+  lastName: String!
+  links: [LinkType!]!
+}
+
+input LinkType {
+  platform: String!
+  link: String!
 }

@@ -14,6 +14,8 @@ export default function LinkCustomizer({
   buttonPressed: boolean;
   setButtonPressed: (_: boolean) => void;
 }) {
+  const platforms = ["GitHub", "Youtube", "Facebook", "LinkedIn"];
+
   return (
     <main className="bg-white text-[#737373] h-full p-10">
       <h1 className="text-[#333333] text-3xl font-bold">
@@ -24,7 +26,15 @@ export default function LinkCustomizer({
         world!
       </p>
       <button
-        onClick={() => setLinks([...links, { link: "", platform: "" }])}
+        onClick={() =>
+          setLinks([
+            ...links,
+            {
+              platform: links.length > 3 ? "GitHub" : platforms[links.length],
+              link: "",
+            },
+          ])
+        }
         className="border border-[#633CFF] rounded-lg py-3 w-full text-[#633CFF] font-semibold mt-10 mb-6 "
       >
         + Add new link
@@ -70,15 +80,15 @@ export default function LinkCustomizer({
                 </div>
                 <div className="mt-3">
                   <p>Platform</p>
-                  <div className="flex items-center justify-between mt-1 bg-white px-4 py-3 rounded-lg border border-[#D9D9D9]">
+                  <button className="custom_dropdown_parent w-full flex items-center relative justify-between mt-1 bg-white px-4 py-3 rounded-lg border border-[#D9D9D9]">
                     <div className="flex gap-3">
                       <Image
-                        src={icons["octocat"]}
+                        src={icons[item.platform]}
                         alt="platform"
                         width={16}
                         height={16}
                       />
-                      <p>GitHub</p>
+                      <p>{item.platform}</p>
                     </div>
                     <Image
                       src={icons.dropdown}
@@ -86,7 +96,29 @@ export default function LinkCustomizer({
                       width={12}
                       height={6}
                     />
-                  </div>
+                    <div className="custom_dropdown absolute w-full -ml-4 mt-[265px] flex flex-col gap-6 p-5 border border-[#D9D9D9] rounded-lg bg-white">
+                      {platforms.map((platformName, subIndex) => (
+                        <div
+                          key={subIndex}
+                          className="flex gap-2 hover:text-[#633CFF]"
+                          onClick={() => {
+                            const obj = links;
+                            obj[index].platform = platformName;
+                            setLinks(obj);
+                            setButtonPressed(!buttonPressed);
+                          }}
+                        >
+                          <Image
+                            src={icons[platformName]}
+                            alt="image"
+                            width={16}
+                            height={16}
+                          />
+                          <p>{platformName}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </button>
                 </div>
                 <div className="mt-3">
                   <label htmlFor={`id${index}`}>Link</label>
@@ -101,7 +133,7 @@ export default function LinkCustomizer({
                       <input
                         className="flex-1 outline-none"
                         id={`id${index}`}
-                        placeholder="e.g. https://www.github.com/johnappleseed"
+                        placeholder={`e.g. https://www.${item.platform.toLowerCase()}.com/johnappleseed`}
                         onChange={(e) => {
                           const obj = links;
                           obj[index].link = e.target.value;

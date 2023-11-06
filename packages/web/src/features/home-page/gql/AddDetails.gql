@@ -1,0 +1,5 @@
+mutation AddDetails($userDetailsInput: UserDetailsInput!) {
+  addDetails(userDetailsInput: $userDetailsInput) {
+    success
+  }
+}
