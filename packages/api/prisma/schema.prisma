@@ -29,5 +29,6 @@ model Details {
   userID    String  @id @unique
   firstName String
   lastName  String
+  email     String
   Links     Links[]
 }

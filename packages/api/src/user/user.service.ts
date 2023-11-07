@@ -12,6 +12,7 @@ export class UserService {
     userID: string,
     firstName: string,
     lastName: string,
+    email: string,
     links: LinkType[],
   ): Promise<SuccessMessage> {
     try {
@@ -23,6 +24,7 @@ export class UserService {
           userID,
           firstName,
           lastName,
+          email,
           Links: {
             createMany: {
               data: links,

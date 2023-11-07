@@ -9,6 +9,9 @@ export class UserOutputDTO {
   @Field()
   lastName: string;
 
+  @Field()
+  email?: string;
+
   @Field(() => [LinkOutputDTO])
   links: LinkOutputDTO[];
 }

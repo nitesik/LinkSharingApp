@@ -1,9 +1,10 @@
 import { icons } from "@/configs/icons";
 import Image from "next/image";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 
-export default function Header() {
+export default function Header({ userId }: { userId: string }) {
   const router = useRouter();
   const url = useSearchParams().get("v");
 
@@ -43,9 +44,12 @@ export default function Header() {
           <p>Profile Details</p>
         </button>
       </div>
-      <button className="text-[#633CFF] border border-[#633CFF] px-7 py-3 rounded-lg">
+      <Link
+        href={`/${userId}`}
+        className="text-[#633CFF] border border-[#633CFF] px-7 py-3 rounded-lg"
+      >
         Preview
-      </button>
+      </Link>
     </div>
   );
 }

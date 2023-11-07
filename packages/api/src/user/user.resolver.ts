@@ -24,6 +24,7 @@ export class UserResolver {
       user.user.sub,
       userDetailsInput.firstName,
       userDetailsInput.lastName,
+      user.user.email,
       userDetailsInput.links,
     );
 
@@ -41,6 +42,13 @@ export class UserResolver {
   @Query(() => UserOutputDTO)
   async getDetails(@CurrentUser() user): Promise<UserOutputDTO> {
     const details = await this.userService.getDetails(user.user.sub);
+
+    return details;
+  }
+
+  @Query(() => UserOutputDTO)
+  async getUserDetails(@Args('id') id: string): Promise<UserOutputDTO> {
+    const details = await this.userService.getDetails(id);
 
     return details;
   }

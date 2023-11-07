@@ -1,0 +1,11 @@
+query GetUserDetails($id: String!) {
+  getUserDetails(id: $id) {
+    firstName
+    lastName
+    email
+    links {
+      platform
+      link
+    }
+  }
+}

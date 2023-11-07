@@ -13,14 +13,17 @@ import { useRouter } from "next/router";
 import _ from "lodash";
 
 export type Link = {
-  __typename?: "LinkOutputDTO" | undefined;
   platform: string;
   link: string;
 };
 
 export default function HomePage() {
   const { data, loading, error } = useMeQuery();
-  const { data: detailsData, loading: detailsLoading } = useGetDetailsQuery();
+  const {
+    data: detailsData,
+    loading: detailsLoading,
+    refetch,
+  } = useGetDetailsQuery();
   const [addDetailsMutation] = useAddDetailsMutation();
 
   const [firstName, setFirstName] = useState("");
@@ -47,15 +50,15 @@ export default function HomePage() {
   }, [detailsData]);
 
   useEffect(() => {
-    console.log(links);
-  });
+    refetch();
+  }, []);
 
   if (loading) return;
 
   return (
     data?.Me && (
       <main className="p-6 bg-[#FAFAFA] min-h-screen flex flex-col gap-6">
-        <Header />
+        <Header userId={data.Me.sub} />
         <div className="flex gap-6 w-full h-full">
           <div className="w-[40%]">
             <LeftMenu

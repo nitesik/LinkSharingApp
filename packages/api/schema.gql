@@ -26,12 +26,14 @@ type LinkOutputDTO {
 type UserOutputDTO {
   firstName: String!
   lastName: String!
+  email: String!
   links: [LinkOutputDTO!]!
 }
 
 type Query {
   Me: User!
   getDetails: UserOutputDTO!
+  getUserDetails(id: String!): UserOutputDTO!
 }
 
 type Mutation {
