@@ -45,18 +45,19 @@ export default function HomePage() {
     setEmail(data?.Me.email || "");
     setLinks(_.cloneDeep(detailsData?.getDetails.links) || []);
 
-    // const array = [...detailsData?.getDetails.links!];
-    // setLinks(array);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [detailsData]);
 
   useEffect(() => {
     refetch();
   }, []);
 
-  if (loading) return;
+  if (loading || detailsLoading) return;
+
+  if (!data) return <div>Error lol</div>;
 
   return (
-    data?.Me && (
+    data && (
       <main className="p-6 bg-[#FAFAFA] min-h-screen flex flex-col gap-6">
         <Header userId={data.Me.sub} />
         <div className="flex gap-6 w-full h-full">

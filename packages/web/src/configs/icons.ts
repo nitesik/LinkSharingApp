@@ -21,7 +21,7 @@ import LinkedIn_Solid from "@/assets/LinkedIn_Solid.svg";
 import right_arrow from "@/assets/right_arrow.svg";
 import profile_selected from "@/assets/profile_selected.svg";
 
-export const icons: { [key: string]: any } = {
+export const icons: { [key: string]: string } = {
   logo,
   devlinks,
   emailIcon,

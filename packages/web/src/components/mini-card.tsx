@@ -9,7 +9,7 @@ export default function MiniCard({
   platform: string;
   link: string;
 }) {
-  const palette: any = {
+  const palette = {
     youtube: "#EE3939",
     github: "#1A1A1A",
     linkedin: "#2D68FF",
@@ -21,12 +21,16 @@ export default function MiniCard({
       href={"https://" + link}
       className={` p-4 rounded-lg flex justify-between items-center`}
       target="_blank"
-      style={{ backgroundColor: palette[platform?.toLowerCase()] }}
+      style={{
+        backgroundColor:
+          palette[platform?.toLowerCase() as keyof typeof palette],
+      }}
     >
       <div className="flex items-center gap-2">
         <Image
           src={icons[platform + "_Solid"]}
           alt="platform"
+          className={`${platform === "Facebook" && "invert"}`}
           width={20}
           height={20}
         />

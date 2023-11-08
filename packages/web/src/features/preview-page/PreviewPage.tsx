@@ -20,15 +20,15 @@ export default function PreviewPage() {
   });
 
   useEffect(() => {
-    console.log(MeData?.Me.email);
-
     refetch();
   }, []);
+
+  if (loading) return;
 
   return (
     <main className="flex flex-col items-center">
       <div className="bg-[#633CFF] h-[357px] rounded-b-[32px] w-full p-6 ">
-        {MeData?.Me.email === data?.getUserDetails.email && (
+        {MeData?.Me && MeData?.Me.email === data?.getUserDetails.email && (
           <div className="bg-white rounded-lg px-6 py-4 flex justify-between">
             <Link
               href={"/"}
