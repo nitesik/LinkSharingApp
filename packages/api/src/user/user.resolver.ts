@@ -18,8 +18,6 @@ export class UserResolver {
     @Args('userDetailsInput') userDetailsInput: UserDetailsInput,
     @CurrentUser() user,
   ): Promise<SuccessMessage> {
-    console.log(user);
-
     const message = await this.userService.addDetails(
       user.user.sub,
       userDetailsInput.firstName,

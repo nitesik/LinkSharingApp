@@ -1,8 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "http://localhost:3333/graphql",
-  // uri: "https://link-sharing-app-qiix.onrender.com/graphql",
+  uri: process.env.NEXT_PUBLIC_GRAPHQL_URL,
   cache: new InMemoryCache({
     addTypename: false,
   }),
