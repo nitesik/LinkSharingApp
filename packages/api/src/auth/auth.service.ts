@@ -20,7 +20,7 @@ export class AuthService {
 
     if (!user) throw new Error('Email not found');
 
-    const isVerified = argon.verify(user.hashed, password);
+    const isVerified = await argon.verify(user.hashed, password);
 
     if (!isVerified) throw new Error('Wrong Password');
 

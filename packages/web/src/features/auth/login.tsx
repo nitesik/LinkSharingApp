@@ -86,9 +86,23 @@ export default function LoginComponent() {
                 />
               </div>
             </div>
-
-            <button className="bg-[#633CFF] py-3 rounded-lg text-white font-bold">
-              Login
+            {loginError && (
+              <p className="text-red-500 w-full text-center">
+                {loginError.message}
+              </p>
+            )}
+            <button className="bg-[#633CFF] py-3 rounded-lg flex justify-center text-white font-bold">
+              {loading ? (
+                <Image
+                  src={icons.loader}
+                  alt="loading"
+                  height={25}
+                  width={25}
+                  className="animate-spin invert"
+                />
+              ) : (
+                "Login"
+              )}
             </button>
             <p className="text-center">
               Don&apos;t have an account?{" "}

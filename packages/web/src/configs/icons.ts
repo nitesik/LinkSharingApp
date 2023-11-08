@@ -20,6 +20,7 @@ import Youtube_Solid from "@/assets/Youtube_solid.svg";
 import LinkedIn_Solid from "@/assets/LinkedIn_Solid.svg";
 import right_arrow from "@/assets/right_arrow.svg";
 import profile_selected from "@/assets/profile_selected.svg";
+import loader from "@/assets/loader.svg";
 
 export const icons: { [key: string]: string } = {
   logo,
@@ -44,4 +45,5 @@ export const icons: { [key: string]: string } = {
   Facebook_Solid,
   Youtube_Solid,
   LinkedIn_Solid,
+  loader,
 };

@@ -103,9 +103,19 @@ export default function SignUpComponent() {
             <button
               disabled={password !== passwordConfirm}
               type="submit"
-              className="bg-[#633CFF] py-3 rounded-lg text-white font-bold"
+              className="bg-[#633CFF] py-3 rounded-lg text-white font-bold flex justify-center"
             >
-              Create new account
+              {loading ? (
+                <Image
+                  src={icons.loader}
+                  alt="loading"
+                  height={25}
+                  width={25}
+                  className="animate-spin invert"
+                />
+              ) : (
+                "Create new account"
+              )}
             </button>
             <p className="text-center">
               Already have an account?{" "}

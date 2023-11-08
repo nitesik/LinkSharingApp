@@ -11,6 +11,8 @@ import { useSearchParams } from "next/navigation";
 import ProfileCustomizer from "@/components/profile-customizer";
 import { useRouter } from "next/router";
 import _ from "lodash";
+import Image from "next/image";
+import { icons } from "@/configs/icons";
 
 export type Link = {
   platform: string;
@@ -24,7 +26,8 @@ export default function HomePage() {
     loading: detailsLoading,
     refetch,
   } = useGetDetailsQuery();
-  const [addDetailsMutation] = useAddDetailsMutation();
+  const [addDetailsMutation, { loading: addDetailsLoading }] =
+    useAddDetailsMutation();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -50,7 +53,7 @@ export default function HomePage() {
 
   useEffect(() => {
     refetch();
-  }, []);
+  }, [detailsData?.getDetails]);
 
   if (loading || detailsLoading) return;
 
@@ -103,9 +106,19 @@ export default function HomePage() {
                     },
                   });
                 }}
-                className="bg-[#633CFF] rounded-lg w-fit text-white font-semibold px-8 py-3 "
+                className="bg-[#633CFF] flex justify-center rounded-lg w-fit text-white font-semibold px-8 py-3 "
               >
-                Save
+                {addDetailsLoading ? (
+                  <Image
+                    src={icons.loader}
+                    alt="loading"
+                    height={25}
+                    width={25}
+                    className="animate-spin invert"
+                  />
+                ) : (
+                  "Save"
+                )}
               </button>
             </div>
           </div>
