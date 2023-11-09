@@ -32,7 +32,7 @@ export class AuthResolver {
     if (token)
       res.cookie('auth', token.token, {
         maxAge: 9000000,
-        httpOnly: false,
+        httpOnly: true,
         secure: true,
         sameSite: 'none',
       });
@@ -53,7 +53,7 @@ export class AuthResolver {
     if (token)
       res.cookie('auth', token.token, {
         maxAge: 9000000,
-        httpOnly: false,
+        httpOnly: true,
         secure: true,
         sameSite: 'none',
       });
