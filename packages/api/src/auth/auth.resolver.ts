@@ -34,7 +34,7 @@ export class AuthResolver {
         maxAge: 9000000,
         httpOnly: true,
         secure: true,
-        sameSite: 'lax',
+        sameSite: 'none',
       });
 
     return token;
@@ -55,7 +55,7 @@ export class AuthResolver {
         maxAge: 9000000,
         httpOnly: true,
         secure: true,
-        sameSite: 'lax',
+        sameSite: 'none',
       });
     return token;
   }
