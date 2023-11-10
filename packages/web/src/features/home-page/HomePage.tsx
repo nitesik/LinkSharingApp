@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import _ from "lodash";
 import Image from "next/image";
 import { icons } from "@/configs/icons";
+import Head from "next/head";
 
 export type Link = {
   platform: string;
@@ -61,10 +62,13 @@ export default function HomePage() {
 
   return (
     data && (
-      <main className="p-6 bg-[#FAFAFA] min-h-screen flex flex-col gap-6">
+      <main className="md:p-6 bg-[#FAFAFA] min-h-screen flex flex-col gap-6">
+        <Head>
+          <title>Homepage</title>
+        </Head>
         <Header userId={data.Me.sub} />
-        <div className="flex gap-6 w-full h-full">
-          <div className="w-[40%]">
+        <div className="px-6 md:px-0 flex gap-6 w-full h-full">
+          <div className="w-[40%] hidden md:inline">
             <LeftMenu
               links={links}
               firstName={firstName}
@@ -106,7 +110,7 @@ export default function HomePage() {
                     },
                   });
                 }}
-                className="bg-[#633CFF] flex justify-center rounded-lg w-fit text-white font-semibold px-8 py-3 "
+                className="bg-[#633CFF] w-full flex justify-center rounded-lg md:w-fit text-white font-semibold px-8 py-3 "
               >
                 {addDetailsLoading ? (
                   <Image

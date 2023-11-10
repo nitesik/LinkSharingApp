@@ -1,5 +1,6 @@
 import { icons } from "@/configs/icons";
 import { useLoginMutation } from "@/generated/graphql";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -32,15 +33,18 @@ export default function LoginComponent() {
   }
 
   return (
-    <div className="h-screen bg-[#FAFAFA] text-[#737373] grid place-content-center">
-      <div className="flex flex-col items-center gap-[51px] text-base">
+    <div className="h-screen md:bg-[#FAFAFA] text-[#737373] p-8 md:p-0 md:grid place-content-center">
+      <Head>
+        <title>Log In</title>
+      </Head>
+      <div className="flex flex-col md:items-center gap-[51px] text-base">
         <div className="flex gap-2">
           <Image src={icons.logo} alt="logo" width={40} height={40} />
           <Image src={icons.devlinks} alt="devlinks" width={126} />
         </div>
         <form
           onSubmit={submitHandler}
-          className="grid gap-10 p-10 bg-white rounded-lg w-[476px]"
+          className="grid gap-10 md:p-10 bg-white rounded-lg md:w-[476px]"
         >
           <div>
             <h1 className="text-[32px] leading-[48px] text-black font-bold">
@@ -104,12 +108,12 @@ export default function LoginComponent() {
                 "Login"
               )}
             </button>
-            <p className="text-center">
-              Don&apos;t have an account?{" "}
+            <div className="text-center md:flex gap-1 justify-center ">
+              <p>Don&apos;t have an account? </p>
               <Link href="/signup" className="text-[#633CFF]">
                 Create account
               </Link>
-            </p>
+            </div>
           </div>
         </form>
       </div>

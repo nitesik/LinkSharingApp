@@ -1,5 +1,6 @@
 import { icons } from "@/configs/icons";
 import { useSignUpMutation } from "@/generated/graphql";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -10,7 +11,8 @@ export default function SignUpComponent() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
-  const [signUpMutation, { data, loading, error }] = useSignUpMutation();
+  const [signUpMutation, { data, loading, error: signupError }] =
+    useSignUpMutation();
 
   const router = useRouter();
 
@@ -30,15 +32,18 @@ export default function SignUpComponent() {
   }
 
   return (
-    <div className="h-screen bg-[#FAFAFA] text-[#737373] grid place-content-center">
-      <div className="flex flex-col items-center gap-[51px] text-base">
+    <div className="h-screen md:bg-[#FAFAFA] text-[#737373] p-8 md:p-0 md:grid place-content-center">
+      <Head>
+        <title>Sign Up</title>
+      </Head>
+      <div className="flex flex-col md:items-center gap-[51px] text-base">
         <div className="flex gap-2">
           <Image src={icons.logo} alt="logo" width={40} height={40} />
           <Image src={icons.devlinks} alt="devlinks" width={126} />
         </div>
         <form
           onSubmit={formHandler}
-          className="grid gap-10 p-10 bg-white rounded-lg w-[476px]"
+          className="grid gap-10 md:p-10 bg-white rounded-lg md:w-[476px]"
         >
           <div>
             <h1 className="text-[32px] leading-[48px] text-black font-bold">
@@ -100,6 +105,11 @@ export default function SignUpComponent() {
               </div>
             </div>
             <p>Password must contain at least 8 characters</p>
+            {signupError && (
+              <p className="text-red-500 w-full text-center">
+                {signupError.message}
+              </p>
+            )}
             <button
               disabled={password !== passwordConfirm}
               type="submit"
@@ -117,12 +127,12 @@ export default function SignUpComponent() {
                 "Create new account"
               )}
             </button>
-            <p className="text-center">
-              Already have an account?{" "}
+            <div className="text-center gap-2 justify-center md:flex">
+              <p>Already have an account? </p>
               <Link href="/login" className="text-[#633CFF]">
                 Login
               </Link>
-            </p>
+            </div>
           </div>
         </form>
       </div>

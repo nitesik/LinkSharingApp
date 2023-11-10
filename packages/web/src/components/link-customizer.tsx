@@ -17,7 +17,7 @@ export default function LinkCustomizer({
   const platforms = ["GitHub", "Youtube", "Facebook", "LinkedIn"];
 
   return (
-    <main className="bg-white text-[#737373] h-full p-10">
+    <main className="bg-white text-[#737373] h-full p-6 md:p-10">
       <h1 className="text-[#333333] text-3xl font-bold">
         Customize your links
       </h1>
@@ -53,7 +53,7 @@ export default function LinkCustomizer({
             <h1 className="mt-10 mb-6 font-bold text-3xl text-[#333]">
               Let&apos;s get you started
             </h1>
-            <p className="w-[488px]">
+            <p className="md:w-[488px]">
               Use the &quot;Add new link&quot; button to get started. Once you
               have more than one link, you can reorder and edit them. We&apos;re
               here to help you share your profiles with everyone!
@@ -131,7 +131,7 @@ export default function LinkCustomizer({
                         height={16}
                       />
                       <input
-                        className="flex-1 outline-none"
+                        className="flex-1 outline-none overflow-y-scroll"
                         id={`id${index}`}
                         placeholder={`e.g. https://www.${item.platform.toLowerCase()}.com/johnappleseed`}
                         onChange={(e) => {
