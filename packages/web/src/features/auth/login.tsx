@@ -56,7 +56,7 @@ export default function LoginComponent() {
           </div>
           <div className="grid gap-6">
             <div className="">
-              <label className="text-xs text-[#333]" htmlFor="">
+              <label className="text-xs text-[#333]" htmlFor="email">
                 Email address
               </label>
               <div className="flex gap-3 items-center border px-4 py-3 rounded-lg mt-1">
@@ -67,7 +67,8 @@ export default function LoginComponent() {
                   height={16}
                 />
                 <input
-                  className="outline-none"
+                  id="email"
+                  className="outline-none flex-1"
                   type="text"
                   placeholder="e.g. alex@email.com"
                   required
@@ -76,13 +77,14 @@ export default function LoginComponent() {
               </div>
             </div>
             <div className="">
-              <label className="text-xs text-[#333]" htmlFor="">
-                Create password
+              <label className="text-xs text-[#333]" htmlFor="password">
+                Password
               </label>
               <div className="flex gap-3 items-center border px-4 py-3 rounded-lg mt-1">
                 <Image src={icons.lock} alt="lock" width={16} height={16} />
                 <input
-                  className="outline-none"
+                  id="password"
+                  className="outline-none flex-1"
                   type="password"
                   placeholder="Enter your password"
                   required

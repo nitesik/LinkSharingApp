@@ -25,7 +25,7 @@ export class AuthResolver {
     @Context() { res }: { res: Response },
   ): Promise<Token> {
     const token = await this.authService.login(
-      userAuthInput.email,
+      userAuthInput.email.trim(),
       userAuthInput.password,
     );
 
@@ -46,7 +46,7 @@ export class AuthResolver {
     @Context() { res }: { res: Response },
   ): Promise<Token> {
     const token = await this.authService.signup(
-      userAuthInput.email,
+      userAuthInput.email.trim(),
       userAuthInput.password,
     );
 

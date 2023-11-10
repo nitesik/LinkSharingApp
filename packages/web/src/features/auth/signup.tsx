@@ -55,7 +55,7 @@ export default function SignUpComponent() {
           </div>
           <div className="grid gap-6">
             <div className="">
-              <label className="text-xs text-[#333]" htmlFor="">
+              <label className="text-xs text-[#333]" htmlFor="email">
                 Email address
               </label>
               <div className="flex gap-3 items-center border px-4 py-3 rounded-lg mt-1">
@@ -67,7 +67,8 @@ export default function SignUpComponent() {
                 />
                 <input
                   required
-                  className="outline-none"
+                  id="email"
+                  className="outline-none flex-1"
                   type="text"
                   placeholder="e.g. alex@email.com"
                   onChange={(e) => setEmail(e.target.value)}
@@ -75,14 +76,15 @@ export default function SignUpComponent() {
               </div>
             </div>
             <div className="">
-              <label className="text-xs text-[#333]" htmlFor="">
+              <label className="text-xs text-[#333]" htmlFor="password">
                 Create password
               </label>
               <div className="flex gap-3 items-center border px-4 py-3 rounded-lg mt-1">
                 <Image src={icons.lock} alt="lock" width={16} height={16} />
                 <input
+                  id="password"
                   required
-                  className="outline-none"
+                  className="outline-none flex-1"
                   type="password"
                   placeholder="At least 8 characters"
                   onChange={(e) => setPassword(e.target.value)}
@@ -90,14 +92,15 @@ export default function SignUpComponent() {
               </div>
             </div>
             <div className="">
-              <label className="text-xs text-[#333]" htmlFor="">
+              <label className="text-xs text-[#333]" htmlFor="confirmPassword">
                 Confirm password
               </label>
               <div className="flex gap-3 items-center border px-4 py-3 rounded-lg mt-1">
                 <Image src={icons.lock} alt="lock" width={16} height={16} />
                 <input
+                  id="confirmPassword"
                   required
-                  className="outline-none"
+                  className="outline-none flex-1"
                   type="password"
                   placeholder="At least 8 characters"
                   onChange={(e) => setPasswordConfirm(e.target.value)}
