@@ -35,7 +35,7 @@ export default function LinkCustomizer({
             },
           ])
         }
-        className="border border-[#633CFF] rounded-lg py-3 w-full text-[#633CFF] font-semibold mt-10 mb-6 "
+        className="border border-[#633CFF] rounded-lg py-3 w-full text-[#633CFF] lg: font-semibold mt-10 mb-6 active:bg-[#633cff3f] "
       >
         + Add new link
       </button>
@@ -96,7 +96,7 @@ export default function LinkCustomizer({
                       width={12}
                       height={6}
                     />
-                    <div className="custom_dropdown absolute w-full -ml-4 mt-[265px] flex flex-col gap-6 p-5 border border-[#D9D9D9] rounded-lg bg-white">
+                    <div className="custom_dropdown absolute w-full -ml-4 mt-[260px] flex flex-col gap-6 p-5 border border-[#D9D9D9] rounded-lg bg-white">
                       {platforms.map((platformName, subIndex) => (
                         <div
                           key={subIndex}

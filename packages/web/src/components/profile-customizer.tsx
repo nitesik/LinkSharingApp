@@ -9,7 +9,7 @@ export default function ProfileCustomizer(props: ProfileDetails) {
       <p className="mt-2">
         Add your details to create a personal touch to your profile.
       </p>
-      <div className="bg-[#FAFAFA] rounded-xl flex justify-between p-5 mt-10 mb-6 items-center ">
+      <div className="bg-[#FAFAFA] relative rounded-xl overflow-hidden flex justify-between p-5 mt-10 mb-6 items-center ">
         <p>Profile picture</p>
         <div className="flex gap-6 items-center">
           <div className="bg-[#EFEBFF] rounded-xl flex flex-col items-center justify-center w-[193px] h-[193px] ">
@@ -24,6 +24,9 @@ export default function ProfileCustomizer(props: ProfileDetails) {
           <p className="w-[315px]">
             Image must be below 1024x1024px. Use PNG or JPG format.
           </p>
+        </div>
+        <div className="absolute w-full h-full bg-[#0000005e] grid place-content-center left-0">
+          <p className="text-white text-6xl">Coming Soon...</p>
         </div>
       </div>
 
