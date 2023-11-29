@@ -35,6 +35,7 @@ export class AuthResolver {
         httpOnly: true,
         secure: true,
         sameSite: 'none',
+        domain: 'https://link-sharing-app-web.vercel.app/',
       });
 
     return token;
@@ -56,6 +57,7 @@ export class AuthResolver {
         httpOnly: true,
         secure: true,
         sameSite: 'none',
+        domain: 'https://link-sharing-app-web.vercel.app/',
       });
     return token;
   }
