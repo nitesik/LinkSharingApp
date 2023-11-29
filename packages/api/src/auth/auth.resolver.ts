@@ -34,8 +34,8 @@ export class AuthResolver {
         maxAge: 9000000,
         httpOnly: true,
         secure: true,
-        sameSite: 'strict',
-        domain: 'https://link-sharing-app-web.vercel.app/',
+        sameSite: 'none',
+        domain: 'link-sharing-app-web',
       });
 
     return token;
@@ -56,8 +56,8 @@ export class AuthResolver {
         maxAge: 9000000,
         httpOnly: true,
         secure: true,
-        sameSite: 'strict',
-        domain: 'https://link-sharing-app-web.vercel.app/',
+        sameSite: 'none',
+        domain: 'link-sharing-app-web',
       });
     return token;
   }
