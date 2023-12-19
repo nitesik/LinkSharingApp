@@ -6,17 +6,13 @@ type token {
   token: String!
 }
 
-"""
-user
-"""
+"""user"""
 type User {
   sub: String!
   email: String!
 }
 
-"""
-message
-"""
+"""message"""
 type SuccessMessage {
   success: String!
 }
@@ -26,9 +22,7 @@ type LinkOutputDTO {
   link: String!
 }
 
-"""
-User
-"""
+"""User"""
 type UserOutputDTO {
   firstName: String!
   lastName: String!
